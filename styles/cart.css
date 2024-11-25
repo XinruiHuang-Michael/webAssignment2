@@ -1,0 +1,95 @@
+/* 页面整体布局 */
+.cart-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+/* 标题样式 */
+.cart-container h2 {
+    font-size: 1.8rem;
+    color: #d76400;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* 购物车表格样式 */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.cart-table th, .cart-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.cart-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    color: #333;
+}
+
+.cart-table td {
+    background-color: #fff;
+    color: #555;
+}
+
+.cart-table tr:hover {
+    background-color: #f9f9f9; /* 鼠标悬停效果 */
+}
+
+/* 空购物车提示样式 */
+.empty-cart-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888;
+    margin: 20px 0;
+}
+
+/* 总价样式 */
+.cart-total {
+    font-size: 1.5rem;
+    color: #d76400;
+    text-align: right;
+    margin-top: 20px;
+}
+
+/* 按钮样式 */
+.cart-button {
+    background-color: #d76400;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px auto;
+    display: block;
+    width: 200px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cart-button:hover {
+    background-color: #d76400;
+    transform: scale(1.05);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .cart-table th, .cart-table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .cart-button {
+        width: 100%; /* 按钮全宽 */
+    }
+}

@@ -1,0 +1,112 @@
+/* 页面整体布局 */
+.checkout-form {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+/* 标题样式 */
+.checkout-form h2 {
+    font-size: 1.8rem;
+    color: #d76400;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* 表格样式 */
+.checkout-form table {
+    width: 100%;
+    border-collapse: collapse; /* 合并边框 */
+    margin-top: 20px;
+}
+
+.checkout-form th, .checkout-form td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.checkout-form th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    color: #333;
+}
+
+.checkout-form td {
+    background-color: #fff;
+    color: #555;
+}
+
+.checkout-form tr:hover {
+    background-color: #f9f9f9; /* 鼠标悬停效果 */
+}
+
+/* 总价样式 */
+.checkout-form table tr:last-child td {
+    font-weight: bold;
+    color: #d76400;
+}
+
+/* 表单布局 */
+.checkout-form div {
+    margin-bottom: 15px;
+}
+
+.checkout-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.checkout-form input, .checkout-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* 按钮样式 */
+.checkout-form button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.checkout-form button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+/* 错误消息样式 */
+.error {
+    color: red;
+    font-size: 1rem;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .checkout-form table th, .checkout-form table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .checkout-form button {
+        width: 100%; /* 按钮全宽 */
+    }
+}
+

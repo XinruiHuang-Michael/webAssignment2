@@ -1,0 +1,105 @@
+/* 全局样式 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* 页眉样式 */
+header {
+    background-color: #d76400; /* 改为浅色背景 */
+    border-bottom: 2px solid #ddd; /* 添加底部边框 */
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+}
+
+header h1 {
+    font-size: 2rem;
+    color: white; /* 餐厅标志颜色 */
+    margin: 10px;
+    font-weight: bold;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    border: 1px solid #ddd; /* 为导航条添加边框 */
+    border-radius: 8px; /* 圆角 */
+    background-color: #e6a958; /* 背景色 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加轻微阴影 */
+    padding: 0.5rem 1rem;
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
+    color: #333; /* 链接颜色 */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 16px; /* 添加内边距 */
+    border-radius: 4px; /* 圆角按钮样式 */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    text-decoration: none;
+    background-color: #d76400; /* 悬停背景色 */
+    color: #fff; /* 悬停文字颜色 */
+}
+
+/* 主体样式 */
+main {
+    padding: 32px;
+    min-height: calc(100vh - 120px); /* 确保页面高度至少为视口高度减去页眉和页脚的高度 */
+    box-sizing: border-box;
+}
+
+.welcome {
+    text-align: center;
+    margin: 32px auto;
+}
+
+.welcome h2 {
+    font-size: 32px;
+    color: #0078d7;
+}
+
+/* 页脚样式 */
+footer {
+    text-align: center;
+    background-color: #d76400;
+    color: white;
+    padding: 1rem;
+    position:relative; /* 从固定变为相对布局 */
+    width: 100%;
+    bottom: 0;
+    margin-top: 40px; /* 为内容增加与页脚的间距 */
+}
+.admin-link {
+    background-color: #0078d7;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.admin-link:hover {
+    background-color: #0056a3;
+}
+/* 响应式导航栏 */
+@media (max-width: 768px) {
+    nav ul {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
