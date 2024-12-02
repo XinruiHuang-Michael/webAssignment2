@@ -1,63 +1,90 @@
 <?php
 session_start();
-require dirname(__DIR__) . '/database/db_connection.php'; // 引入数据库连接
+require dirname(__DIR__) . '/database/db_connection.php'; // connect to database
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // 获取用户输入的数据
+    // get the user information
     $delivery_option = $_POST['delivery-option'] ?? '';
-    $address = ($_POST['delivery-option'] === 'delivery') ? ($_POST['address'] ?? '') : null; // 如果不是配送则地址为空
+    $address = ($_POST['delivery-option'] === 'delivery') ? ($_POST['address'] ?? '') : null;
+    $phone = ($_POST['delivery-option'] === 'delivery') ? ($_POST['phone'] ?? '') : null;
     $payment_method = $_POST['payment-method'] ?? '';
     $total_price = 0;
+    $total = 0;
+    $tax = 0;
 
-    // 计算购物车总价
+    // calculate the total price of this order
     if (!empty($_SESSION['cart'])) {
         foreach ($_SESSION['cart'] as $item) {
             $total_price += $item['price'] * $item['quantity'];
         }
+        $tax = $total_price * 0.13;
+        $total = $total_price + $tax;   
     }
 
-    // 将订单存储到数据库
-    $query = "INSERT INTO orders (total_price, delivery_option, address, payment_method) VALUES (?, ?, ?, ?)";
+
+    // insert orders
+    $query = "INSERT INTO orders (total_price, delivery_option, address, phone, payment_method) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("dsss", $total_price, $delivery_option, $address, $payment_method);
+    $stmt->bind_param("dssss", $total, $delivery_option, $address, $phone, $payment_method);
 
     if ($stmt->execute()) {
-        // 获取订单号（新插入记录的 ID）
+        // get the order number
         $order_id = $conn->insert_id;
-    
-        // 格式化订单号为 4 位数
+        // set the order number to keep 4 number
         $formatted_order_id = str_pad($order_id, 4, "0", STR_PAD_LEFT);
-    
-        // 清空购物车
-        $_SESSION['cart'] = [];
-    
-        // 将订单号和配送选项存入会话
-        $_SESSION['order_number'] = $formatted_order_id;
-        $_SESSION['delivery_option'] = $delivery_option;
-        $_SESSION['address'] = $address; // 如果需要显示地址
-        $_SESSION['phone'] = $phone;     // 如果需要显示手机号
-    
-        // 跳转到订单成功页面
-        header("Location: order_success.php");
-        exit;
     } else {
         $error = "Failed to place order. Please try again.";
+    }
+
+    // inser order items
+    if (!empty($_SESSION['cart'])) {
+        $all_items_inserted = true; // check if all the items has been inserted
+    
+        foreach ($_SESSION['cart'] as $item) {
+            $id = $item['id'];
+            $quantity = $item['quantity'];
+            $sql_item = "INSERT INTO orders_items (order_id, item_id, quantity) VALUES ('$order_id', '$id', '$quantity')";
+    
+            if ($conn->query($sql_item) !== TRUE) {
+                $all_items_inserted = false;
+                $error = "Failed to place order item. Please try again.";
+                break;   // if failed, stop insert data
+            }
+        }
+    
+        if ($all_items_inserted) {
+            // clean cart session
+            $_SESSION['cart'] = [];
+    
+            // save order session
+            $_SESSION['order_number'] = $formatted_order_id;
+            $_SESSION['delivery_option'] = $delivery_option;
+            $_SESSION['address'] = $address;
+            $_SESSION['phone'] = $phone;
+    
+            // redirectory to success page
+            header("Location: order_success.php");
+            exit;
+        }
     }
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/style.css">
-    <link rel="stylesheet" href="../styles/checkout.css"> <!-- 菜单页面特定样式 -->
+    <link rel="stylesheet" href="../styles/checkout.css">
     <title>Checkout</title>
 </head>
+
 <body>
     <header>
         <h1>Checkout</h1>
         <nav>
+            <!-- navigation -->
             <ul>
                 <li><a href="menu.php">Menu</a></li>
                 <li><a href="cart.php">Shopping Cart</a></li>
@@ -67,6 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </ul>
         </nav>
     </header>
+    <!-- checkout form -->
     <main>
         <section class="checkout-form">
             <h2>Order Summary</h2>
@@ -88,18 +116,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             echo "<tr>
                                 <td>{$item['name']}</td>
                                 <td>{$item['quantity']}</td>
-                                <td>\${$subtotal}</td>
+                                <td>$" . number_format($item['price'], decimals: 2) . "</td>
                               </tr>";
                         }
                     }
+                    $tax = $subtotal * 0.13;
+                    $total += $tax;
                     ?>
                     <tr>
+                        <td colspan="2"><strong>Tax</strong></td>
+                        <td><strong>$<?php echo number_format($tax, decimals: 2); ?></strong></td>
+                    </tr>
+                    <tr>
                         <td colspan="2"><strong>Total</strong></td>
-                        <td><strong>$<?php echo $total; ?></strong></td>
+                        <td><strong>$<?php echo number_format($total, decimals: 2); ?></strong></td>
                     </tr>
                 </tbody>
             </table>
-
+            <!-- delivery form -->
             <h2>Delivery Information</h2>
             <?php if (isset($error)): ?>
                 <p class="error"><?php echo $error; ?></p>
@@ -129,16 +163,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <option value="cash">Cash</option>
                     </select>
                 </div>
-                <button type="submit">Place Order</button>
+                <button type="submit" id="placeorder">Place Order</button>
             </form>
         </section>
     </main>
     <footer>
-        <p>&copy; 2024 Michael Restaurant</p>
+        <p>&copy; 2024 Assignment2-Restaurant Order Machine Page</p>
     </footer>
-    <script src="../scripts/checkout.js"></script> <!-- 引入外部 JavaScript 文件 -->
+    <!-- link javascript to set display of address and phone input box -->
+    <script src="../scripts/checkout.js"></script>
 </body>
+
 </html>
-
-
-

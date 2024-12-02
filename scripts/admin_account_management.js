@@ -1,28 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // ====================
-    // Add Admin Account 验证
-    // ====================
+    // add admin
     const adminAddForm = document.getElementById("admin-add-form");
 
     adminAddForm.addEventListener("submit", (e) => {
-        // 阻止表单提交，直到验证完成
+        // prevent submit
         e.preventDefault();
 
-        // 获取表单输入值
         const usernameInput = document.getElementById("username");
         const passwordInput = document.getElementById("password");
 
-        // 获取错误消息元素
+        // get the error information
         const usernameError = document.getElementById("username-error");
         const passwordError = document.getElementById("password-error");
 
-        // 清除之前的错误消息
+        // clear errror messages
         usernameError.textContent = "";
         passwordError.textContent = "";
 
         let isValid = true;
 
-        // 验证用户名
+        // check username
         const usernameValue = usernameInput.value.trim();
         if (usernameValue === "") {
             usernameError.textContent = "Username is required.";
@@ -32,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
             isValid = false;
         }
 
-        // 验证密码
+        // check password
         const passwordValue = passwordInput.value.trim();
         if (passwordValue === "") {
             passwordError.textContent = "Password is required.";
@@ -42,21 +39,19 @@ document.addEventListener("DOMContentLoaded", () => {
             isValid = false;
         }
 
-        // 如果所有字段都有效，提交表单
+        // if validation success, submit form
         if (isValid) {
             adminAddForm.submit();
         }
     });
 
-    // ========================
-    // Edit Password 弹窗逻辑
-    // ========================
+    // pop-up window
     const modal = document.getElementById("edit-password-modal");
     const editPasswordForm = document.getElementById("edit-password-form");
     const editButtons = document.querySelectorAll(".edit-password-button");
     const closeBtn = document.querySelector(".modal .close");
 
-    // 打开编辑密码弹窗
+    // open the popup
     editButtons.forEach((button) => {
         button.addEventListener("click", () => {
             const username = button.dataset.username;
@@ -65,30 +60,29 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 关闭弹窗
+    // close the popup
     closeBtn.addEventListener("click", () => {
         modal.style.display = "none";
     });
 
-    // 点击窗外关闭弹窗
+    // click the outside to close popup
     window.addEventListener("click", (e) => {
         if (e.target === modal) {
             modal.style.display = "none";
         }
     });
 
-    // Edit Password 表单验证
+    // Edit Password for validation
     editPasswordForm.addEventListener("submit", (e) => {
         const newPassword = document.getElementById("new-password").value.trim();
         const confirmPassword = document.getElementById("confirm-password").value.trim();
 
-        // 清除之前的错误消息
         const passwordError = document.getElementById("new-password-error");
         if (passwordError) passwordError.remove();
 
         let isValid = true;
 
-        // 验证新密码
+        // check new password if is over 6 characters
         if (newPassword.length < 6) {
             const error = document.createElement("p");
             error.textContent = "Password must be at least 6 characters.";
@@ -96,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
             error.style.color = "#d9534f";
             editPasswordForm.insertBefore(error, editPasswordForm.firstChild);
             isValid = false;
-        } else if (newPassword !== confirmPassword) {
+        } else if (newPassword !== confirmPassword) {   // check the confirm password
             const error = document.createElement("p");
             error.textContent = "Passwords do not match.";
             error.id = "new-password-error";
@@ -105,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
             isValid = false;
         }
 
-        // 如果验证失败，阻止表单提交
+        // if the validation failed, prevent the submit
         if (!isValid) {
             e.preventDefault();
         }

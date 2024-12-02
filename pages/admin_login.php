@@ -1,8 +1,8 @@
 <?php
 session_start();
-require '../database/db_connection.php'; // 引入数据库连接
+require '../database/db_connection.php'; // connect to database
 
-// 处理登录请求
+// admin login check
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
         $result = $stmt->get_result();
-
+        // check if name and password correct
         if ($result->num_rows === 1) {
             $row = $result->fetch_assoc();
             $_SESSION['admin_logged_in'] = $row['username'];
@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Admin Login</title>
 </head>
 <body>
+    <!-- login form -->
     <div class="login-container">
         <h1>Admin Login</h1>
         <?php if (isset($error)): ?>

@@ -1,48 +1,48 @@
-/* About Us 页面容器样式 */
+/* About Us */
 .about {
-    border: 1px solid #ddd; /* 边框 */
-    border-radius: 10px; /* 圆角 */
-    background-color: #fff; /* 背景色 */
-    padding: 20px; /* 内边距 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影 */
-    max-width: 800px; /* 最大宽度 */
-    margin: 20px auto; /* 居中 */
-    font-size: 1rem; /* 全局字体大小 */
-    line-height: 1.6; /* 行高 */
+    border: 1px solid #ddd; 
+    border-radius: 10px; 
+    background-color: #fff; 
+    padding: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px; 
+    margin: 20px auto; 
+    font-size: 1rem; 
+    line-height: 1.6;
 }
 
-/* 标题样式 */
+/* title */
 .about h2 {
-    font-size: 2rem; /* 标题字体大小 */
-    color: #d76400; /* 蓝色标题 */
-    text-align: center; /* 居中对齐 */
-    margin-bottom: 20px; /* 下方间距 */
+    font-size: 2rem; 
+    color: #d76400;
+    text-align: center; 
+    margin-bottom: 20px; 
 }
 
 .about h3 {
     font-size: 1.5rem;
-    color: #d76400; /* 橙色子标题 */
-    margin-top: 20px; /* 上方间距 */
+    color: #d76400; 
+    margin-top: 20px;
     margin-bottom: 10px;
 }
 
-/* 段落样式 */
+/* paragraph */
 .about p {
-    color: #555; /* 文本颜色 */
-    margin-bottom: 15px; /* 下方间距 */
+    color: #555; 
+    margin-bottom: 15px; 
 }
 
-/* 地址和联系方式样式 */
+/* address and phone */
 .about p span {
-    font-weight: bold; /* 加粗 */
-    color: #333; /* 深灰色文本 */
+    font-weight: bold; 
+    color: #333; 
 }
 
-/* 响应式调整 */
+/* responsive */
 @media (max-width: 768px) {
     .about {
-        padding: 15px; /* 调整内边距 */
-        font-size: 0.9rem; /* 缩小字体 */
+        padding: 15px; 
+        font-size: 0.9rem; 
     }
 }
 

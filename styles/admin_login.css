@@ -1,4 +1,4 @@
-/* 登录页面容器 */
+/* admin login */
 .login-container {
     max-width: 400px;
     margin: 100px auto;
@@ -10,21 +10,21 @@
     text-align: center;
 }
 
-/* 标题样式 */
+/* title */
 .login-container h1 {
     font-size: 2rem;
     color: #0078d7;
     margin-bottom: 20px;
 }
 
-/* 表单样式 */
+/* form */
 .login-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-/* 输入框样式 */
+/* input box */
 .login-form .form-group {
     display: flex;
     flex-direction: column;
@@ -38,15 +38,14 @@
     border-radius: 5px;
 }
 
-/* 添加按钮间距 */
+/* button */
 .login-form,
 .back-form {
-    margin-bottom: 10px; /* 增加按钮之间的垂直间距 */
+    margin-bottom: 10px; 
 }
 
-/* 保证按钮宽度一致 */
 .login-button {
-    width: 100%; /* 设置按钮宽度为容器的 100% */
+    width: 100%; 
     padding: 10px;
     font-size: 1rem;
     background-color: #0078d7;
@@ -62,7 +61,7 @@
 }
 
 
-/* 错误消息样式 */
+/* error message */
 .error {
     color: red;
     font-size: 0.9rem;

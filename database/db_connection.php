@@ -1,13 +1,13 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = ""; // 默认没有密码
-$dbname = "online_ordering"; // 数据库名称
+$password = ""; // default password is null
+$dbname = "online_ordering"; // database name
 
-// 创建数据库连接
+// create database connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// 检查连接是否成功
+// check if connect successfully
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }

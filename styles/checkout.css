@@ -1,4 +1,4 @@
-/* 页面整体布局 */
+/* checkout form */
 .checkout-form {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -9,7 +9,7 @@
     max-width: 800px;
 }
 
-/* 标题样式 */
+/* title */
 .checkout-form h2 {
     font-size: 1.8rem;
     color: #d76400;
@@ -17,10 +17,10 @@
     text-align: center;
 }
 
-/* 表格样式 */
+/* form */
 .checkout-form table {
     width: 100%;
-    border-collapse: collapse; /* 合并边框 */
+    border-collapse: collapse; 
     margin-top: 20px;
 }
 
@@ -43,16 +43,16 @@
 }
 
 .checkout-form tr:hover {
-    background-color: #f9f9f9; /* 鼠标悬停效果 */
+    background-color: #f9f9f9; 
 }
 
-/* 总价样式 */
+/* total price */
 .checkout-form table tr:last-child td {
     font-weight: bold;
     color: #d76400;
 }
 
-/* 表单布局 */
+/* delivery form */
 .checkout-form div {
     margin-bottom: 15px;
 }
@@ -71,7 +71,7 @@
     font-size: 1rem;
 }
 
-/* 按钮样式 */
+/* check button */
 .checkout-form button {
     background-color: #28a745;
     color: white;
@@ -90,7 +90,7 @@
     transform: scale(1.05);
 }
 
-/* 错误消息样式 */
+/* error message */
 .error {
     color: red;
     font-size: 1rem;
@@ -98,7 +98,7 @@
     text-align: center;
 }
 
-/* 响应式调整 */
+/* responsive */
 @media (max-width: 768px) {
     .checkout-form table th, .checkout-form table td {
         font-size: 14px;
@@ -106,7 +106,7 @@
     }
 
     .checkout-form button {
-        width: 100%; /* 按钮全宽 */
+        width: 100%; 
     }
 }
 

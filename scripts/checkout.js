@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const deliveryOption = document.getElementById("delivery-option");
     const addressField = document.getElementById("address-field");
     const phoneField = document.getElementById("phone-field");
+    const place = document.getElementById("placeorder");
 
     // Function to toggle address and phone fields based on delivery option
     function toggleAddressField() {
@@ -21,3 +22,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initial toggle check on page load
     toggleAddressField();
 });
+
+if (deliveryOption.value === "delivery") {
+    place.addEventListener("submit", function (event) {
+        if (addressField.value === null || phoneField.value === null) {
+            event.preventDefault();
+            alert("Please enter your address and phonenumber");
+        }
+    });
+}

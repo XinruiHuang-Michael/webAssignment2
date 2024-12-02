@@ -1,13 +1,12 @@
 <?php
-// 开启会话（如需要反馈消息）
+// start session
 session_start();
 
-// 引入数据库连接
+// connect to database
 require dirname(__DIR__) . '/database/db_connection.php';
 
-// 检查是否通过 POST 方法提交表单
+// get information from contact page
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // 获取表单数据并进行基本验证
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
     $message = trim($_POST['message']);
@@ -18,24 +17,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // 插入数据到数据库
+    // insert into contact_messages
     $query = "INSERT INTO contact_messages (name, email, message) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("sss", $name, $email, $message);
 
     if ($stmt->execute()) {
-        // 保存成功，设置成功消息并重定向
+        // save success, redirect to contact page and display success message
         $_SESSION['success'] = "Your message has been sent successfully!";
         header("Location: ../pages/contact.php");
         exit;
     } else {
-        // 保存失败，设置错误消息并重定向
+        // save unsuccess, redirect to contact page and display error message
         $_SESSION['error'] = "Failed to send your message. Please try again.";
         header("Location: ../pages/contact.php");
         exit;
     }
 } else {
-    // 如果访问方式不是 POST，重定向回 Contact 页面
     header("Location: ../pages/contact.php");
     exit;
 }

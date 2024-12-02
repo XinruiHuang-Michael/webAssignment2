@@ -1,14 +1,14 @@
 <?php
-// 开始会话
+// start session
 session_start();
 
-// 清空会话数据
+// clean the seesion
 session_unset();
 
-// 销毁会话
+// destroy the seesion
 session_destroy();
 
-// 重定向到管理员登录页面
+// redirect to admin log in page
 header("Location: ../pages/admin_login.php"); 
 exit;
 ?>

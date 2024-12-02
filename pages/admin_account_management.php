@@ -7,15 +7,15 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
 require '../database/db_connection.php';
 
-// 默认账户设置
+// default admin name
 $default_username = 'admin';
 
-// 添加管理员账户
+// add new admin
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'add_admin') {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
 
-    // 检查是否有重复的用户名
+    // check if use repeat name
     $check_query = "SELECT * FROM admin_users WHERE username = ?";
     $check_stmt = $conn->prepare($check_query);
     $check_stmt->bind_param("s", $username);
@@ -25,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     if ($result->num_rows > 0) {
         $error = "Username already exists!";
     } else {
-        // 添加新管理员账户
         $query = "INSERT INTO admin_users (username, password) VALUES (?, ?)";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("ss", $username, $password);
@@ -34,11 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 
-// 删除管理员账户
+// delete admin
 if (isset($_GET['delete_id'])) {
-    $delete_id = (int)$_GET['delete_id'];
+    $delete_id = (int) $_GET['delete_id'];
 
-    // 查询删除账户的用户名
+    // check if the admin exists
     $query = "SELECT username FROM admin_users WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $delete_id);
@@ -47,14 +46,13 @@ if (isset($_GET['delete_id'])) {
     $row = $result->fetch_assoc();
     $username_to_delete = $row['username'];
 
-    // 检查是否是默认账户或当前登录用户
+    // check if the default admin logged in
     if ($username_to_delete === $default_username) {
         echo "<script>alert('Cannot delete the default admin account.'); window.location.href='admin_account_management.php';</script>";
     } elseif ($username_to_delete === $_SESSION['admin_logged_in']) {
         session_destroy();
-        echo "<script>alert('You cannot delete your own account. Logging out.'); window.location.href='admin_login.php';</script>";
+        echo "<script>alert('You cannot delete your own account.');</script>";
     } else {
-        // 正常删除账户
         $delete_query = "DELETE FROM admin_users WHERE id = ?";
         $delete_stmt = $conn->prepare($delete_query);
         $delete_stmt->bind_param("i", $delete_id);
@@ -64,29 +62,45 @@ if (isset($_GET['delete_id'])) {
     }
 }
 
-// 修改管理员密码
+// change password
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username']) && isset($_POST['new_password'])) {
     $username = trim($_POST['username']);
     $new_password = trim($_POST['new_password']);
 
-    // 更新密码
-    $query = "UPDATE admin_users SET password = ? WHERE username = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("ss", $new_password, $username);
-
-    if ($stmt->execute()) {
-        echo "<script>alert('Password updated successfully.'); window.location.href='admin_account_management.php';</script>";
+    // update new password
+    $query = "SELECT password FROM admin_users WHERE username = ?";
+    $stmt_check = $conn->prepare($query);
+    $stmt_check->bind_param("s", $username);
+    $stmt_check->execute();
+    $check_result = $stmt_check->get_result();
+    //check if the newpassword as same as the original one
+    if ($check_result->num_rows > 0) {
+        $row = $check_result->fetch_assoc();
+        if ($row["password"] === $new_password) {
+            echo "<script>alert('Same as the original password!')</script>";
+        } else {
+            $query1 = "UPDATE admin_users SET password = ? WHERE username = ?";
+            $stmt = $conn->prepare($query1);
+            $stmt->bind_param("ss", $new_password, $username);
+            if ($stmt->execute()) {
+                echo "<script>alert('Password updated successfully.'); window.location.href='admin_account_management.php';</script>";
+            } else {
+                echo "<script>alert('Failed to update password. Please try again.'); window.location.href='admin_account_management.php';</script>";
+            }
+        }
     } else {
-        echo "<script>alert('Failed to update password. Please try again.'); window.location.href='admin_account_management.php';</script>";
+        echo "<script>alert('This admin does not exists!')</script>";
     }
+
 }
 
-// 查询管理员账户
+// search admin account
 $query = "SELECT * FROM admin_users";
 $result = $conn->query($query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -95,20 +109,22 @@ $result = $conn->query($query);
     <script src="../scripts/admin_account_management.js" defer></script>
     <title>Admin Account Management</title>
 </head>
+
 <body>
     <header>
         <h1>Admin Account Management</h1>
         <nav>
+            <!-- navigation -->
             <ul>
-                <li><a href="admin_page.php">Admin Panel</a></li>
                 <li><a href="menu_management.php">Menu Management</a></li>
-                <li><a href="admin_account_management.php">Admin Account Management</a></li>
-                <li><a href="../server/logout.php">Logout (<?php echo htmlspecialchars($_SESSION['admin_logged_in']); ?>)</a></li>
+                <li><a href="order_details.php">Order Details</a></li>
+                <li><a href="../server/logout.php">Logout
+                        (<?php echo htmlspecialchars($_SESSION['admin_logged_in']); ?>)</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <!-- 添加管理员 -->
+        <!-- add admin -->
         <section class="admin-add">
             <h2>Add Admin Account</h2>
             <?php if (isset($success)): ?>
@@ -127,7 +143,7 @@ $result = $conn->query($query);
             </form>
         </section>
 
-        <!-- 管理员账户表格 -->
+        <!-- the information of admin -->
         <section class="admin-list">
             <h2>Admin Accounts</h2>
             <table>
@@ -148,8 +164,10 @@ $result = $conn->query($query);
                                 <td><?php echo htmlspecialchars($row['password']); ?></td>
                             <?php endif; ?>
                             <td>
-                                <a href="admin_account_management.php?delete_id=<?php echo $row['id']; ?>" class="delete-button">Delete</a>
-                                <button class="edit-password-button" data-username="<?php echo htmlspecialchars($row['username']); ?>">Edit Password</button>
+                                <a href="admin_account_management.php?delete_id=<?php echo $row['id']; ?>"
+                                    class="delete-button">Delete</a>
+                                <button class="edit-password-button"
+                                    data-username="<?php echo htmlspecialchars($row['username']); ?>">Edit Password</button>
                             </td>
                         </tr>
                     <?php endwhile; ?>
@@ -158,7 +176,7 @@ $result = $conn->query($query);
         </section>
     </main>
 
-    <!-- 修改密码弹窗 -->
+    <!-- change password -->
     <div id="edit-password-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -174,9 +192,8 @@ $result = $conn->query($query);
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 Michael Restaurant</p>
+        <p>&copy; 2024 Assignment2-Restaurant Order Machine Page</p>
     </footer>
 </body>
+
 </html>
-
-

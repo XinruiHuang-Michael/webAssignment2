@@ -1,16 +1,16 @@
-/* 成功信息容器样式 */
+/* order success page style */
 .success-message {
-    border: 1px solid #ddd; /* 边框 */
-    border-radius: 10px; /* 圆角 */
-    background-color: #fff; /* 背景色 */
-    padding: 20px; /* 内边距 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
-    max-width: 600px; /* 最大宽度 */
-    margin: 20px auto; /* 居中 */
-    text-align: center; /* 文本居中 */
+    border: 1px solid #ddd; 
+    border-radius: 10px; 
+    background-color: #fff; 
+    padding: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    max-width: 600px; 
+    margin: 20px auto; 
+    text-align: center; 
 }
 
-/* 标题样式 */
+/* title */
 .success-message h2 {
     font-size: 2rem;
     color: #000000;
@@ -18,20 +18,20 @@
     font-weight: bold;
 }
 
-/* 段落样式 */
+/* paragraph */
 .success-message p {
     font-size: 1.2rem;
-    color: #555; /* 文本颜色 */
+    color: #555; 
     margin-bottom: 15px;
 }
 
-/* 加粗信息样式 */
+/* bold */
 .success-message p strong {
-    color: #d76400; /* 突出信息的蓝色 */
+    color: #d76400; 
     font-weight: bold;
 }
 
-/* 按钮样式 */
+/* button */
 .success-message .button {
     background-color: #d76400;
     color: white;
@@ -42,7 +42,7 @@
     font-weight: bold;
     display: inline-block;
     margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 按钮阴影 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -51,7 +51,7 @@
     transform: scale(1.05);
 }
 
-/* 响应式调整 */
+/* reponsive */
 @media (max-width: 768px) {
     .success-message {
         padding: 15px;

@@ -1,4 +1,5 @@
 <?php
+// start the session
 session_start();
 ?>
 <!DOCTYPE html>
@@ -6,8 +7,8 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/style.css"> <!-- 通用样式 -->
-    <link rel="stylesheet" href="../styles/contact.css"> <!-- Contact 页面样式 -->
+    <link rel="stylesheet" href="../styles/style.css"> 
+    <link rel="stylesheet" href="../styles/contact.css"> 
     <title>Contact Us</title>
 </head>
 <body>
@@ -26,13 +27,14 @@ session_start();
     <main>
         <section class="contact-form">
             <h2>We'd love to hear from you!</h2>
-            <!-- 显示成功或错误消息 -->
+            <!-- show error or success messages -->
             <?php if (isset($_SESSION['success'])): ?>
                 <p class="success"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></p>
             <?php endif; ?>
             <?php if (isset($_SESSION['error'])): ?>
                 <p class="error"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
             <?php endif; ?>
+            <!-- contact form -->
             <form action="../server/contact_process.php" method="POST">
                 <div>
                     <label for="name">Name:</label>
@@ -53,7 +55,7 @@ session_start();
         </section>
     </main>
     <footer>
-        <p>&copy; 2024 Michael Restaurant</p>
+        <p>&copy; 2024 Assignment2-Restaurant Order Machine Page</p>
     </footer>
 </body>
 </html>

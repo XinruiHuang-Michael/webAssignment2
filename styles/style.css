@@ -1,4 +1,4 @@
-/* 全局样式 */
+/* global style */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -7,18 +7,18 @@ body {
     color: #333;
 }
 
-/* 页眉样式 */
+/* header style */
 header {
-    background-color: #d76400; /* 改为浅色背景 */
-    border-bottom: 2px solid #ddd; /* 添加底部边框 */
+    background-color: #d76400; 
+    border-bottom: 2px solid #ddd;
     padding: 16px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
     font-size: 2rem;
-    color: white; /* 餐厅标志颜色 */
+    color: white; 
     margin: 10px;
     font-weight: bold;
 }
@@ -30,10 +30,10 @@ header nav ul {
     display: flex;
     justify-content: center;
     gap: 16px;
-    border: 1px solid #ddd; /* 为导航条添加边框 */
-    border-radius: 8px; /* 圆角 */
-    background-color: #e6a958; /* 背景色 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加轻微阴影 */
+    border: 1px solid #ddd; 
+    border-radius: 8px;
+    background-color: #e6a958; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 0.5rem 1rem;
 }
 
@@ -42,24 +42,24 @@ header nav ul li {
 }
 
 header nav ul li a {
-    color: #333; /* 链接颜色 */
+    color: #333; 
     text-decoration: none;
     font-weight: bold;
-    padding: 8px 16px; /* 添加内边距 */
-    border-radius: 4px; /* 圆角按钮样式 */
+    padding: 8px 16px; 
+    border-radius: 4px; 
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-
+/* hover style */
 header nav ul li a:hover {
     text-decoration: none;
-    background-color: #d76400; /* 悬停背景色 */
-    color: #fff; /* 悬停文字颜色 */
+    background-color: #d76400; 
+    color: #fff;
 }
 
-/* 主体样式 */
+/* main style */
 main {
     padding: 32px;
-    min-height: calc(100vh - 120px); /* 确保页面高度至少为视口高度减去页眉和页脚的高度 */
+    min-height: calc(100vh - 120px);
     box-sizing: border-box;
 }
 
@@ -73,16 +73,16 @@ main {
     color: #0078d7;
 }
 
-/* 页脚样式 */
+/* footer style */
 footer {
     text-align: center;
     background-color: #d76400;
     color: white;
     padding: 1rem;
-    position:relative; /* 从固定变为相对布局 */
+    position:relative; 
     width: 100%;
     bottom: 0;
-    margin-top: 40px; /* 为内容增加与页脚的间距 */
+    margin-top: 40px; 
 }
 .admin-link {
     background-color: #0078d7;
@@ -95,7 +95,7 @@ footer {
 .admin-link:hover {
     background-color: #0056a3;
 }
-/* 响应式导航栏 */
+/* responsive navigation style*/
 @media (max-width: 768px) {
     nav ul {
         display: flex;

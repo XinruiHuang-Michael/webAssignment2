@@ -1,46 +1,48 @@
-/* 欢迎横幅容器样式 */
+/* index welcome style */
 .welcome-banner {
     position: relative;
     text-align: center;
-    color: white; /* 文字颜色为白色，与背景对比 */
-    border-radius: 10px; /* 圆角边框 */
-    overflow: hidden; /* 确保内容不溢出 */
-    margin: 20px auto; /* 居中对齐 */
-    max-width: 1000px; /* 最大宽度 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加轻微阴影 */
+    color: white; 
+    border-radius: 10px; 
+    overflow: hidden; 
+    margin: 20px auto; 
+    max-width: 1000px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
-/* 横幅图片样式 */
+/* image in the middle of main page */
 .welcome-banner img {
     width: 100%;
     height: auto;
-    filter: brightness(70%); /* 调暗背景图以突出文字 */
+    filter: brightness(70%); /* dim the image color */
 }
 
-/* 横幅标题样式 */
+/* title in image */
 .welcome-banner h2 {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);  /* set in the middle of page*/
     font-size: 3rem;
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 添加阴影效果 */
     margin: 0;
 }
 
-/* 横幅描述文字样式 */
+/* description */
 .welcome-banner p {
     position: absolute;
-    top: 65%;
+    top: 68%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 1.2rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     margin: 0;
 }
 
-/* 按钮样式 */
+#log_out{
+    display: none;
+}
+
+/* button */
 .welcome-banner .button {
     position: absolute;
     top: 80%;
@@ -53,22 +55,20 @@
     font-size: 1.2rem;
     border-radius: 5px;
     font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 按钮阴影 */
-
 }
-
+/* button hover style */
 .welcome-banner .button:hover {
-    background-color: #914400; /* 悬停时按钮颜色 */
+    background-color: #914400;
 }
 
-/* 响应式调整 */
+/* repositive */
 @media (max-width: 768px) {
     .welcome-banner h2 {
-        font-size: 2.2rem; /* 缩小标题字体 */
+        font-size: 2.2rem;  
     }
 
     .welcome-banner p {
-        font-size: 1rem; /* 缩小描述字体 */
+        font-size: 1rem; 
     }
 
     .welcome-banner .button {

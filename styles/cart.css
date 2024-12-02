@@ -1,4 +1,3 @@
-/* 页面整体布局 */
 .cart-container {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -8,7 +7,7 @@
     margin: 20px 0;
 }
 
-/* 标题样式 */
+/* title */
 .cart-container h2 {
     font-size: 1.8rem;
     color: #d76400;
@@ -16,14 +15,15 @@
     text-align: center;
 }
 
-/* 购物车表格样式 */
+/* cart list */
 .cart-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
-.cart-table th, .cart-table td {
+.cart-table th,
+.cart-table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
@@ -41,11 +41,12 @@
     color: #555;
 }
 
+/* hover style */
 .cart-table tr:hover {
-    background-color: #f9f9f9; /* 鼠标悬停效果 */
+    background-color: #f9f9f9;
 }
 
-/* 空购物车提示样式 */
+/* empty cart */
 .empty-cart-message {
     text-align: center;
     font-size: 1.2rem;
@@ -53,15 +54,15 @@
     margin: 20px 0;
 }
 
-/* 总价样式 */
-.cart-total {
+/* tax and total price */
+.cart-price {
     font-size: 1.5rem;
     color: #d76400;
     text-align: right;
     margin-top: 20px;
 }
 
-/* 按钮样式 */
+/* button */
 .cart-button {
     background-color: #d76400;
     color: white;
@@ -82,14 +83,36 @@
     transform: scale(1.05);
 }
 
-/* 响应式调整 */
+/* action button style */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.action-buttons .action-button {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.action-buttons form {
+    margin: 0;
+}
+
+/* responsive */
 @media (max-width: 768px) {
-    .cart-table th, .cart-table td {
+
+    .cart-table th,
+    .cart-table td {
         font-size: 14px;
         padding: 8px;
     }
 
     .cart-button {
-        width: 100%; /* 按钮全宽 */
+        width: 100%;
     }
 }

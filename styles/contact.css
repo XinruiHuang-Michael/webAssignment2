@@ -1,33 +1,33 @@
-/* 联系表单容器样式 */
+/* contact form */
 .contact-form {
-    border: 1px solid #ddd; /* 边框 */
-    border-radius: 10px; /* 圆角 */
-    background-color: #fff; /* 白色背景 */
-    padding: 20px; /* 内边距 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
-    max-width: 800px; /* 最大宽度 */
-    margin: 20px auto; /* 居中显示 */
-    font-size: 1rem; /* 全局字体大小 */
-    line-height: 1.6; /* 行高 */
+    border: 1px solid #ddd; 
+    border-radius: 10px; 
+    background-color: #fff; 
+    padding: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px; 
+    margin: 20px auto; 
+    font-size: 1rem; 
+    line-height: 1.6; 
 }
 
-/* 标题样式 */
+/* title */
 .contact-form h2 {
     font-size: 2rem;
-    color: #d76400; /* 主品牌颜色 */
+    color: #d76400; 
     margin-bottom: 20px;
     text-align: center;
 }
 
-/* 表单字段布局 */
+/* form */
 .contact-form div {
-    margin-bottom: 15px; /* 下方间距 */
+    margin-bottom: 15px; 
 }
 
 .contact-form label {
     font-weight: bold;
-    display: block; /* 独占一行 */
-    margin-bottom: 5px; /* 下方间距 */
+    display: block; 
+    margin-bottom: 5px; 
 }
 
 .contact-form input, .contact-form textarea {
@@ -39,7 +39,7 @@
     box-sizing: border-box;
 }
 
-/* 按钮样式 */
+/* button */
 .contact-form button {
     background-color: #28a745;
     color: white;
@@ -58,7 +58,7 @@
     transform: scale(1.05);
 }
 
-/* 响应式调整 */
+/* responsive */
 @media (max-width: 768px) {
     .contact-form {
         padding: 15px;
@@ -66,7 +66,7 @@
     }
 
     .contact-form button {
-        width: 100%; /* 按钮全宽 */
+        width: 100%; 
     }
 }
 

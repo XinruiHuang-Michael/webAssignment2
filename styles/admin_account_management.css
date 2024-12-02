@@ -1,4 +1,4 @@
-/* 全局布局 */
+/* admin account management page */
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
@@ -7,6 +7,7 @@ body {
     color: #333;
 }
 
+/* header */
 header {
     background-color: #d76400;
     color: white;
@@ -18,6 +19,7 @@ header h1 {
     margin: 0;
 }
 
+/* admin navigation */
 nav ul {
     list-style: none;
     padding: 0;
@@ -44,7 +46,7 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 
-/* 主内容布局 */
+/* content */
 main {
     padding: 2rem;
     max-width: 1200px;
@@ -55,7 +57,7 @@ section {
     margin-bottom: 2rem;
 }
 
-/* 添加管理员表单（紧凑布局优化） */
+/* add form */
 .admin-add {
     background-color: white;
     padding: 1.5rem;
@@ -72,8 +74,8 @@ section {
 
 .admin-add form {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 双列布局 */
-    gap: 15px; /* 增加间距 */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 15px; 
     align-items: center;
 }
 
@@ -86,7 +88,7 @@ section {
 }
 
 .admin-add .add-button {
-    grid-column: span 2; /* 按钮独占整行 */
+    grid-column: span 2; 
     background-color: #0078d7;
     color: white;
     border: none;
@@ -100,20 +102,20 @@ section {
     background-color: #0056a3;
 }
 
-/* 错误和成功信息 */
+/* messages */
 .success {
-    color: #28a745; /* 绿色字体 */
+    color: #28a745; 
     font-weight: bold;
     margin-bottom: 1rem;
 }
 
 .error {
-    color: #d9534f; /* 红色字体 */
+    color: #d9534f;
     font-weight: bold;
     margin-bottom: 1rem;
 }
 
-/* 管理员账户表格 */
+/* admin list */
 .admin-list {
     background-color: white;
     padding: 1.5rem;
@@ -168,7 +170,7 @@ table td {
     background-color: #c9302c;
 }
 
-/* Modal 样式 */
+/* Modal */
 .modal {
     display: none;
     position: fixed;
@@ -203,22 +205,22 @@ table td {
     color: black;
 }
 
-/* 错误消息样式 */
+/* error message */
 .error-message {
-    color: #d9534f; /* 红色字体 */
+    color: #d9534f; 
     font-size: 0.9rem;
     margin-top: 5px;
     margin-bottom: -5px;
 }
 
-/* 响应式布局 */
+/* responsive */
 @media (max-width: 768px) {
     .admin-add form {
-        grid-template-columns: 1fr; /* 小屏幕单列布局 */
+        grid-template-columns: 1fr; 
     }
 
     .admin-add .add-button {
-        grid-column: span 1; /* 按钮保持全宽 */
+        grid-column: span 1; 
     }
 }
 
